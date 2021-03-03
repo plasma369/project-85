@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>project 84</title>
+    </head>
+
+    <body>
+        <center>
+            <h1>Car Racing</h1>
+            <h2>Game Status: <span id="game_stadus"></span></h2>
+            <canvas id="myCanvas" width="800" height="600"></canvas>
+        </center>
+    </body>
+</html>
+
+<style>
+    body
+    {
+        background-image: url(https://i.postimg.cc/KzWwHPcq/racing.gif);
+    }
+
+    h1,h2
+    {
+        color: cornflowerblue !important;
+        font-family: fantasy;
+    }
+
+    #myCanvas
+    {
+	border-width:10px;
+	background-image: url(https://i.postimg.cc/bv5d35nK/racing.jpg);
+	border-style:ridge;
+    } 
+</style>
+
+<script>
+canvas = document.getElementById('myCanvas');
+ctx = canvas.getContext("2d");
+
+car_width = 50;
+car_height = 25;
+
+car1_image = "https://i.postimg.cc/YqdnnNX1/car1.png";
+car2_image = "https://i.postimg.cc/YqdnnNX1/car1.png"
+
+car1_x = 10;
+car1_y = 10;
+
+car2_x = 10;
+car2_y = 20;
+
+add()
+
+function add()
+{
+	car1_imgTag = new Image();
+	car1_imgTag.onload = uploadCar1;
+	car1_imgTag.src = car1_image;
+
+    car2_imgTag = new Image();
+	car2_imgTag.onload = uploadCar2;
+	car2_imgTag.src = car2_image;
+}
+
+function uploadCar1() {
+	ctx.drawImage(car1_imgTag, car1_x, car1_y, car_width, car_height);
+}
+
+function uploadCar2() {
+	ctx.drawImage(car2_imgTag, car2_x, car2_y, car_width, car_height);
+}
+
+window.addEventListener("keydown", my_keydown);
+
+function my_keydown(e)
+{
+	keyPressed = e.keyCode;
+	console.log(keyPressed);
+		if(keyPressed == '38')
+		{
+			up1();
+			console.log("up1");
+		}
+		if(keyPressed == '40')
+		{
+			down1();
+			console.log("down1");
+		}
+		if(keyPressed == '37')
+		{
+			left1();
+			console.log("left1");
+		}
+		if(keyPressed == '39')
+		{
+			right1();
+			console.log("right1");
+		}
+}
+
+function up1()
+{
+	if(car1_y >=0)
+	{
+		car1_y = car1_y - 10;
+		console.log("When up arrow is pressed,  x = " + car1_x + " | y = " + car1_y);
+		uploadCar1();
+	}
+}
+function down1()
+{
+	if(car1_y <=500)
+	{
+		car1_y = car1_y + 10;
+		console.log("When down arrow is pressed,  x = " + car1_x + "y = " + car1_y);
+		uploadCar1();
+	}
+}
+function right1()
+{
+	if(car1_x <=700)
+	{
+		car1_x = car1_x + 10;
+		console.log("When right arrow is pressed, x = " + car1_x + "y = " + car1_y);
+		uploadCar1();
+	}
+}
+function left1()
+{
+	if(car1_x >=0)
+	{
+		car1_x = car1_x - 10;
+		console.log("When left arrow is pressed, x = " + car1_x + "y = " + car1_y);
+		uploadCar1();
+	}
+}
+</script>
